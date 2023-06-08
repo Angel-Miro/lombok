@@ -1,101 +1,58 @@
 # Lombok
 
-## Anotaciones
-#### @val : Sirve para crear una constante (final), se infiere el tipo de dato y una vez inferido no se puede cambiar
-###### Ej: 
-    final String type = "texto"
-    val type = "texto"
+## Anotaciones 
 
-#### @var : Sirve para crear una variale, se infiere el tipo de dato y una vez inferido no se puede cambiar el tipo de dato , pero si el valor ya inferido. Esto ya esta por default en Java 10
-###### Ej: 
-    String type = "texto"
-    var type = "texto"
+### @val : Sirve para crear una constante (final), se infiere el tipo de dato y una vez inferido no se puede cambiar 
+    Ej: final String type = "texto" val type = "texto" 
 
-#### @NonNull  : Sirve para marcar un campo como no nulo, en caso que sea nulo se genera una exception
-###### Ej: 
-    public void setNombre(@NonNull String nombre) {
-    this.nombre = nombre;
-    }
+### @var : Sirve para crear una variale, se infiere el tipo de dato y una vez inferido no se puede cambiar el tipo de dato , pero si el valor ya inferido. Esto ya esta por default en Java 10 
+    Ej: String type = "texto" var type = "texto" 
 
-#### @Cleanup  : Sirve para liberar recursos
-###### Ej:         
-       try{
-            @Cleanup
-            Archivo a = new Archivo();
-            a.write("prueba","prueba.txt");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-###### Ej2: Cuando no implementas un Closable
-        try{
-            @Cleanup("close")
-            Archivo a = new Archivo();
-            a.write("prueba dos","pruebaDos.txt");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+### @NonNull : Sirve para marcar un campo como no nulo, en caso que sea nulo se genera una exception 
+    Ej: public void setNombre(@NonNull String nombre) { this.nombre = nombre; } 
 
-#### @Getter and @Setter : Los metodos de toda la vida
-###### Ej:
-    @Getter (value = AccessLevel.PUBLIC)
-    @Setter (value = AccessLevel.PRIVATE)
-    public class Cuenta {
-    private BigDecimal idCuenta;
-    private boolean isActive;
-    
-        public void setValues (){
-            setIdCuenta(new BigDecimal("100001"));
-            setActive(true);
-        }
-    }
+### @Cleanup : Sirve para liberar recursos 
+    Ej: try{ 
+            @Cleanup Archivo a = new Archivo(); 
+            a.write("prueba","prueba.txt"); 
+            } catch (IOException e) {
+                e.printStackTrace(); 
+            } 
+    Ej2: Cuando no implementas un Closable 
+        try{ 
+                @Cleanup("close") Archivo a = new Archivo(); 
+                a.write("prueba dos","pruebaDos.txt"); 
+            } catch (IOException e) { 
+                e.printStackTrace(); 
+            } 
 
-#### @ToString : para poder generer el override del toStrig()
-#### @ToString.Exclude para omitir un campo en el toString()
-###### Ej:
-    @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-        public class Cuenta {
-        @EqualsAndHashCode.Include
-        private BigDecimal idCuenta;
-        
-            @EqualsAndHashCode.Include
+
+### @Getter and @Setter : Los metodos de toda la vida 
+    Ej:
+        @Getter (value = AccessLevel.PUBLIC) 
+        @Setter (value = AccessLevel.PRIVATE) 
+        public class Cuenta { 
+            private BigDecimal idCuenta; 
             private boolean isActive;
-        
-            @ToString.Exclude
-            private String name;
-        
+
             public void setValues (){
                 setIdCuenta(new BigDecimal("100001"));
                 setActive(true);
-                setName("angel");
             }
-        }
+        } 
 
-
-#### @NoArgsConstructor       : constructor vacio
-#### @RequiredArgsConstructor : constructor para ciertos atributos , para utilziarlo solo anotar los atributos con @NonNully generara el constructor
-#### @AllArgsConstructor      : constructor para todos los atributos
-    
-    @Getter (value = AccessLevel.PUBLIC)
-    @Setter (value = AccessLevel.PRIVATE)
-    @ToString
-    @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-    @NoArgsConstructor
-    @AllArgsConstructor
-    //@RequiredArgsConstructor
-    public class Cuenta {
-    
-        @EqualsAndHashCode.Include
+### @ToString : para poder generer el override del toStrig() 
+### @ToString.Exclude para omitir un campo en el toString() 
+    Ej: 
+    @EqualsAndHashCode(onlyExplicitlyIncluded = true) 
+    public class Cuenta { 
+        @EqualsAndHashCode.Include 
         private BigDecimal idCuenta;
->>>>>>> b9945b1 (se agregan los pojos con codigo)
-    
+
         @EqualsAndHashCode.Include
         private boolean isActive;
     
         @ToString.Exclude
-<<<<<<< HEAD
-=======
-        //@EqualsAndHashCode.Exclude
->>>>>>> b9945b1 (se agregan los pojos con codigo)
         private String name;
     
         public void setValues (){
@@ -104,49 +61,37 @@
             setName("angel");
         }
     }
-<<<<<<< HEAD
-@NoArgsConstructor : constructor vacio
-@RequiredArgsConstructor : constructor para ciertos atributos , para utilziarlo solo anotar los atributos con @NonNully generara el constructor
-@AllArgsConstructor : constructor para todos los atributos
-@Getter (value = AccessLevel.PUBLIC)
-@Setter (value = AccessLevel.PRIVATE)
-@ToString
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@NoArgsConstructor
-@AllArgsConstructor
-//@RequiredArgsConstructor
-public class Cuenta {
 
-    @EqualsAndHashCode.Include
-    private BigDecimal idCuenta;
-
-    @EqualsAndHashCode.Include
-    private boolean isActive;
-
-    @ToString.Exclude
-    //@EqualsAndHashCode.Exclude
-    private String name;
-
-    public void setValues (){
+### @NoArgsConstructor : constructor vacio 
+### @RequiredArgsConstructor : constructor para ciertos atributos , para utilziarlo solo anotar los atributos con @NonNull generara el constructor 
+### @AllArgsConstructor : constructor para todos los atributos 
+    @Getter (value = AccessLevel.PUBLIC) 
+    @Setter (value = AccessLevel.PRIVATE) 
+    @ToString 
+    @EqualsAndHashCode(onlyExplicitlyIncluded = true) 
+    @NoArgsConstructor 
+    @AllArgsConstructor 
+    //@RequiredArgsConstructor public class Cuenta {
+        @EqualsAndHashCode.Include
+        private BigDecimal idCuenta;
+        
+        @EqualsAndHashCode.Include
+        private boolean isActive;
+        
+        @ToString.Exclude
+        //@EqualsAndHashCode.Exclude
+        private String name;
+        
+        public void setValues (){
         setIdCuenta(new BigDecimal("100001"));
         setActive(true);
         setName("angel");
+        }
+    } 
+### @Data : Hace todo lo de :Getter, Setter, RequiredArgsConstructor, ToString, EqualsAndHashCode 
+    @Data 
+    public class Persona { 
+        private Integer edad; 
+        private String nombre; 
+        private char genero; 
     }
-}
-@Data : Hace todo lo de :Getter, Setter, RequiredArgsConstructor, ToString, EqualsAndHashCode
-@Data
-public class Persona {
-    private Integer edad;
-    private String nombre;
-    private char genero;
-}
-=======
-
-#### @Data      : Hace todo lo de :Getter, Setter, RequiredArgsConstructor, ToString, EqualsAndHashCode
-    @Data
-    public class Persona {
-        private Integer edad;
-        private String nombre;
-        private char genero;
-    }
->>>>>>> b9945b1 (se agregan los pojos con codigo)
