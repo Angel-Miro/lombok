@@ -127,3 +127,53 @@
         private float y;
     }
 
+### @SneakyThrows: Sirve para manejar excepciones "checked", todas las que heredan de Exception, no funciona para las RuntimeException, es muy util porque te evita estar modificando las firmas de los metodos para meter la exception, así tambien nos ayuda a omitir el bloque try catch
+    public class FileReaderM {
+    
+        @SneakyThrows
+        public void readFile(){
+            File file = new File("path_file");
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+            while((line = br.readLine()) != null){
+                System.out.println(line);
+            }
+        }
+    
+    }
+
+### @Log: Sirve para crear un Log y multiples formas. La documentacion 
+    @CommonsLog
+    Creates private static final org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(LogExample.class);
+    @Flogger
+    Creates private static final com.google.common.flogger.FluentLogger log = com.google.common.flogger.FluentLogger.forEnclosingClass();
+    @JBossLog
+    Creates private static final org.jboss.logging.Logger log = org.jboss.logging.Logger.getLogger(LogExample.class);
+    @Log
+    Creates private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(LogExample.class.getName());
+    @Log4j
+    Creates private static final org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(LogExample.class);
+    @Log4j2
+    Creates private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger(LogExample.class);
+    @Slf4j
+    Creates private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(LogExample.class);
+    @XSlf4j
+    Creates private static final org.slf4j.ext.XLogger log = org.slf4j.ext.XLoggerFactory.getXLogger(LogExample.class);
+    @CustomLog
+    Creates private static final com.foo.your.Logger log = com.foo.your.LoggerFactory.createYourLogger(LogExample.class);
+
+    @Log
+    public class FileReaderM {
+    
+        @SneakyThrows
+        public void readFile(){
+            File file = new File("/home/aztlan/Documentos/java/certificacion/certficacionJava.txt");
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+            while((line = br.readLine()) != null){
+                log.info(line);
+                //System.out.println(line);
+            }
+        }
+    
+    }

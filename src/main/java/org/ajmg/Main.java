@@ -128,7 +128,13 @@ public class Main {
         System.out.println(c2);
     }
 
+    public static void sneakyThrowsth(){
+        FileReaderM f = new FileReaderM();
+        f.readFile();
+    }
+
     public static void main(String[] args) {
+        /*
         valAndVar();
         nonNullLombok();
         cleanUp();
@@ -140,5 +146,7 @@ public class Main {
         value();
         builder();
         with();
+        sneakyThrowsth();
+         */
     }
 }
