@@ -89,9 +89,41 @@
         }
     } 
 ### @Data : Hace todo lo de :Getter, Setter, RequiredArgsConstructor, ToString, EqualsAndHashCode 
-    @Data 
-    public class Persona { 
-        private Integer edad; 
-        private String nombre; 
-        private char genero; 
+    @Value
+    public class Registro {
+        private Integer idRegistro;
+        private Date fechaRegistro;
+        private String firmaDigital;
     }
+
+### @Builder : Es una especie de constructor pero que ayuda al inicializar valores, ayuda para clases con muchos atributos
+    public static void builder(){
+        Cancion c = Cancion.builder().nombre("Life in the Tropics").
+                autor("Cienfue").fechaLanzamiento(new Date()).album("Life in the Tropics").
+                genero("Indie").duracion(2.56f).build();
+        System.out.println(c.toString());
+    }
+
+### @Builder.Default : Sirve para generar un valor por defaul al crear un objecto
+    @Builder
+    @ToString
+    public class Cancion {
+        private String nombre;
+        private String autor;
+        private Date fechaLanzamiento;
+        private String album;
+        private String genero;
+        private float duracion;
+        @Builder.Default
+        private int anio = 2023;
+    }
+
+### @With: Sirve para clonar valores, puede ser usado a nivel clase o a nivel atributo
+    @With
+    @ToString
+    @AllArgsConstructor
+    public class Coordenada {
+        private float x;
+        private float y;
+    }
+
